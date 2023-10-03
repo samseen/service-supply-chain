@@ -13,3 +13,12 @@ spring:
         format_sql: true;
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+security:
+  jwt:
+    secret: ${SECURITY_SECRET}
+    header: Authorization
+    prefix: Bearer
+    expiration: 1
+    refresh:
+      expiration: 7
