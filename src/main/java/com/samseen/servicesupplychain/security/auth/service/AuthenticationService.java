@@ -77,10 +77,10 @@ public class AuthenticationService {
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
+                        request.getUsername(),
                         request.getPassword())
         );
-        var user = userRepository.findByUserName(request.getEmail())
+        var user = userRepository.findByUserName(request.getUsername())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(getUser(user));
         var refreshToken = jwtService.generateRefreshToken(getUser(user));

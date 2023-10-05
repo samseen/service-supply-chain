@@ -24,19 +24,24 @@ public class User {
     @Id
     @Column(name = "id", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
+    @Column(name = "email")
     private String email;
+    @Column(name = "user_name")
     private String userName;
     @JsonIgnore
+    @Column(name = "password")
     private String password;
 
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
 
-    @Column(name = "role")
     @Enumerated(EnumType.STRING)
+    @Column(name = "role")
     private Role role;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -48,12 +53,16 @@ public class User {
     private Set<Permission> permissions = new HashSet<>();
 
     @JsonIgnore
+    @Column(name = "created_by")
     private String createdBy;
 
     @JsonIgnore
+    @Column(name = "updated_by")
     private String updatedBy;
 
+    @Column(name = "created_on")
     private LocalDateTime createdOn;
 
+    @Column(name = "updated_on")
     private LocalDateTime updatedOn;
 }
